@@ -1,5 +1,6 @@
 package com.soccerwordle;
 
+import com.soccerwordle.api.football.ApiResponseTeam;
 import com.soccerwordle.api.football.FootballApiService;
 import com.soccerwordle.api.football.Team;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.Random;
 
 @Service  // Wenn FootballApiService bereits als Service annotiert ist, dann ist @Autowired korrekt
 public class TeamService {
@@ -20,8 +22,28 @@ public class TeamService {
     @Autowired
     private FootballApiService footballApiService;
 
-    public Team getTeam(String teamName) {
-        Team team = footballApiService.getTeam(teamName);
+    public Team getRandomTeam() {
+        // Ids für die Top 5 Ligen
+        int[] leagues = new int[] {39, 78, 61, 135, 140};
+        Random random = new Random();
+        // Generieren eines zufälligen Indexes im Bereich der Array-Größe
+        int randomIndex = random.nextInt(leagues.length);
+
+        //Alle Teams aus der zufällig ausgewählten Liga
+        ApiResponseTeam response = footballApiService.getTeamsFromLeague(leagues[randomIndex]);
+
+        // Auswählen eines zufälligen Teams aus der Response
+        randomIndex = random.nextInt(response.getResponse().size());
+
+
+        int id = response.getResponse().get(randomIndex).getTeam().getId();
+        String name = response.getResponse().get(randomIndex).getTeam().getName();
+        String country = response.getResponse().get(randomIndex).getTeam().getCountry();
+        int founded = response.getResponse().get(randomIndex).getTeam().getFounded();
+        String logo = response.getResponse().get(randomIndex).getTeam().getLogo();
+        String city = response.getResponse().get(randomIndex).getVenue().getCity();
+
+        Team team = new Team(id, name, country, founded, logo, city);
 
         // Die URL des Logos abrufen
         String imageUrl = team.getLogo();  // Hier den tatsächlichen Link zu deinem Team-Logo verwenden

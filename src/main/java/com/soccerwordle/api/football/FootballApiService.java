@@ -7,6 +7,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
 @Service
 public class FootballApiService {
 
@@ -36,7 +38,7 @@ public class FootballApiService {
         return response.getBody();
     }
 
-    public Team getTeam(String teamName) {
+    public ApiResponseTeam getTeam(String teamName) {
         String url = "https://v3.football.api-sports.io/teams?name=" + teamName;
 
         // Header für API-Schlüssel
@@ -48,16 +50,26 @@ public class FootballApiService {
 
         // Anfrage an die API
         ApiResponseTeam response = restTemplate.exchange(url, HttpMethod.GET, entity, ApiResponseTeam.class).getBody();
-        int id = response.getResponse().getFirst().getTeam().getId();
-        String name = response.getResponse().getFirst().getTeam().getName();
-        String country = response.getResponse().getFirst().getTeam().getCountry();
-        int founded = response.getResponse().getFirst().getTeam().getFounded();
-        String logo = response.getResponse().getFirst().getTeam().getLogo();
-        String city = response.getResponse().getFirst().getVenue().getCity();
 
-        Team team = new Team(id, name, country, founded, logo, city);
+        return response;
+    }
+
+    public ApiResponseTeam getTeamsFromLeague(int leagueId) {
+        String url = "https://v3.football.api-sports.io/teams?league="+leagueId+"&season=2021";
+
+        // Header für API-Schlüssel
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("x-rapidapi-key", apiKey);
+        headers.set("x-rapidapi-host", "v3.football.api-sports.io");
+
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+
+        // Anfrage an die API
+        ApiResponseTeam response = restTemplate.exchange(url, HttpMethod.GET, entity, ApiResponseTeam.class).getBody();
 
         // Antwort zurückgeben
-        return team;
+        return response;
     }
+
+
 }

@@ -14,9 +14,18 @@ public class footballController {
     @Autowired
     private TeamService teamService;
 
-    @GetMapping("/team/{name}")
-    public Team getTeam(@PathVariable String name) {
-        return teamService.getTeam(name);
+    @GetMapping("/getRandomTeam")
+    public Team getTeam() {
+       /* Team exampleTeam = new Team(
+                1,
+                "FC Barcelona",
+                "Spain",
+                1899,
+                "https://example.com/logo/fc-barcelona.png",
+                "Barcelona"
+        );
+        return exampleTeam;*/
+         return teamService.getRandomTeam();
     }
 
 }

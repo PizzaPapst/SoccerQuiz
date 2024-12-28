@@ -33,8 +33,10 @@ public class SoccerWordleApplication implements CommandLineRunner {
 
         try {
             // Soccer API aufrufen
-            //Team team = teamService.getTeam("Borussia Dortmund");
-            //System.out.println("Team: " + team.getName() + " Logo Byte Array Length: " + team.getLogoByteArray().length);
+            // Team team = teamService.getTeam("Borussia Dortmund");
+            // System.out.println("Team: " + team.getName() + " Logo Byte Array Length: " + team.getLogoByteArray().length);
+            // Team team = teamService.getRandomTeam();
+            // System.out.println(team.getName());
         } catch (Exception e) {
             System.err.println("Fehler beim Abrufen der Soccer API-Daten: " + e.getMessage());
         }
