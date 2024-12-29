@@ -1,4 +1,4 @@
-package com.soccerwordle.api.football;
+package com.soccerwordle.soccer.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

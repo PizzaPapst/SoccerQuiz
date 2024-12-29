@@ -1,11 +1,11 @@
-package com.soccerwordle.api.football;
+package com.soccerwordle.soccer.api.consume;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.List;
 
 // Antwort der API, die die Teams und Stadien enthält
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ApiResponseTeam {
+public class TeamResponse {
 
     private List<ResponseItem> response;
 

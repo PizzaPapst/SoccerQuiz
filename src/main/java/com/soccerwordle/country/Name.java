@@ -1,4 +1,4 @@
-package com.soccerwordle.api.country;
+package com.soccerwordle.country;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

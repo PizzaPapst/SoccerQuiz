@@ -1,4 +1,4 @@
-package com.soccerwordle.api.country;
+package com.soccerwordle.country;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

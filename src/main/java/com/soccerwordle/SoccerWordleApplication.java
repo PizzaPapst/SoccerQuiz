@@ -1,8 +1,8 @@
 package com.soccerwordle;
 
-import com.soccerwordle.api.football.Team;
-import com.soccerwordle.api.football.FootballApiService;
-import com.soccerwordle.api.country.ImgService;
+import com.soccerwordle.soccer.service.TeamService;
+import com.soccerwordle.soccer.api.consume.FootballApiService;
+import com.soccerwordle.country.ImgService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

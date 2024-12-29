@@ -1,8 +1,8 @@
-package com.soccerwordle;
+package com.soccerwordle.soccer.service;
 
-import com.soccerwordle.api.football.ApiResponseTeam;
-import com.soccerwordle.api.football.FootballApiService;
-import com.soccerwordle.api.football.Team;
+import com.soccerwordle.soccer.api.consume.TeamResponse;
+import com.soccerwordle.soccer.api.consume.FootballApiService;
+import com.soccerwordle.soccer.model.Team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +30,7 @@ public class TeamService {
         int randomIndex = random.nextInt(leagues.length);
 
         //Alle Teams aus der zufällig ausgewählten Liga
-        ApiResponseTeam response = footballApiService.getTeamsFromLeague(leagues[randomIndex]);
+        TeamResponse response = footballApiService.getTeamsFromLeague(leagues[randomIndex]);
 
         // Auswählen eines zufälligen Teams aus der Response
         randomIndex = random.nextInt(response.getResponse().size());

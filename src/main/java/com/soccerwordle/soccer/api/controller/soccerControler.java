@@ -1,18 +1,20 @@
-package com.soccerwordle.api.controller;
+package com.soccerwordle.soccer.api.controller;
 
-import com.soccerwordle.TeamService;
-import com.soccerwordle.api.football.FootballApiService;
-import com.soccerwordle.api.football.Team;
+import com.soccerwordle.soccer.service.ClService;
+import com.soccerwordle.soccer.service.TeamService;
+import com.soccerwordle.soccer.model.Team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class footballController {
+public class soccerControler {
 
     @Autowired
     private TeamService teamService;
+
+    @Autowired
+    private ClService clService;
 
     @GetMapping("/getRandomTeam")
     public Team getTeam() {
@@ -27,5 +29,16 @@ public class footballController {
         return exampleTeam;*/
          return teamService.getRandomTeam();
     }
+
+    @GetMapping("/getClWinners")
+    public String getClWinners() {
+        return clService.getClWinners();
+    }
+
+    @GetMapping("/getClStrikers")
+    public String getClStrikers() {
+        return clService.getClStrikers();
+    }
+
 
 }

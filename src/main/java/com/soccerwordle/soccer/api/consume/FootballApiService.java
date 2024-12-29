@@ -1,4 +1,4 @@
-package com.soccerwordle.api.football;
+package com.soccerwordle.soccer.api.consume;
 
 import org.springframework.stereotype.Service;
 import org.springframework.http.HttpHeaders;
@@ -6,8 +6,6 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.List;
 
 @Service
 public class FootballApiService {
@@ -38,7 +36,7 @@ public class FootballApiService {
         return response.getBody();
     }
 
-    public ApiResponseTeam getTeam(String teamName) {
+    public TeamResponse getTeam(String teamName) {
         String url = "https://v3.football.api-sports.io/teams?name=" + teamName;
 
         // Header für API-Schlüssel
@@ -49,12 +47,12 @@ public class FootballApiService {
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
         // Anfrage an die API
-        ApiResponseTeam response = restTemplate.exchange(url, HttpMethod.GET, entity, ApiResponseTeam.class).getBody();
+        TeamResponse response = restTemplate.exchange(url, HttpMethod.GET, entity, TeamResponse.class).getBody();
 
         return response;
     }
 
-    public ApiResponseTeam getTeamsFromLeague(int leagueId) {
+    public TeamResponse getTeamsFromLeague(int leagueId) {
         String url = "https://v3.football.api-sports.io/teams?league="+leagueId+"&season=2021";
 
         // Header für API-Schlüssel
@@ -65,7 +63,7 @@ public class FootballApiService {
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
         // Anfrage an die API
-        ApiResponseTeam response = restTemplate.exchange(url, HttpMethod.GET, entity, ApiResponseTeam.class).getBody();
+        TeamResponse response = restTemplate.exchange(url, HttpMethod.GET, entity, TeamResponse.class).getBody();
 
         // Antwort zurückgeben
         return response;
